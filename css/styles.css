@@ -1,0 +1,123 @@
+:root {
+    --fondo-oscuro: #0a192f;
+    --fondo-widget: #112240;
+    --azul-brillante: #0070f3;
+    --blanco-puro: #ffffff;
+    --texto-secundario: #8892b0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--fondo-oscuro);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Evita scrolls innecesarios en el home */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Título con sombras y brillo blanco solicitado */
+.titulo-yasui {
+    font-size: clamp(3rem, 12vw, 6rem);
+    font-weight: 900;
+    color: var(--blanco-puro);
+    text-transform: uppercase;
+    letter-spacing: 12px;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+    text-align: center;
+}
+
+/* Grid de 5 botones tipo widget */
+.widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.widget {
+    background: var(--fondo-widget);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget:hover {
+    transform: translateY(-10px);
+    background: rgba(17, 34, 64, 0.9);
+    border-color: var(--azul-brillante);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.widget span {
+    color: var(--texto-secundario);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Botón Contacto debajo de los widgets 2, 3 y 4 */
+.btn-contacto-container {
+    grid-column: 2 / 5;
+    margin-top: 10px;
+}
+
+.btn-contacto {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--azul-brillante);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-contacto:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 20px rgba(0, 112, 243, 0.5);
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 700px) {
+    .widgets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .btn-contacto-container {
+        grid-column: 1 / -1;
+    }
+}
