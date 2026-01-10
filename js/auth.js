@@ -37,10 +37,13 @@ const auth = {
             const data = await res.json();
 
             if (data.success) {
+                // 1. Guardar sesión
                 auth.user = data.user;
-                // Guardamos la sesión en el navegador
                 localStorage.setItem('yasui_session', JSON.stringify(data.user));
-                location.reload();
+
+                // 2. Actualizar UI al instante (SIN RECARGAR)
+                auth.updateUI();
+                auth.cerrarModal();
             } else {
                 alert(data.message);
             }
@@ -58,7 +61,7 @@ const auth = {
         const phone = document.getElementById('reg-phone').value;
         const password = document.getElementById('reg-pass').value;
 
-        // Validar que no estén vacíos
+        // Validar que no estén vacíos los obligatorios
         if (!username || !email || !fullName || !password) {
             return alert("Por favor completa todos los campos obligatorios.");
         }
@@ -93,7 +96,7 @@ const auth = {
     logout: () => {
         auth.user = null;
         localStorage.removeItem('yasui_session');
-        location.href = 'index.html';
+        location.href = 'index.html'; 
     },
 
     updateUI: () => {
