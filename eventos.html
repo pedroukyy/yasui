@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YASUI - Eventos y Experiencias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css"> <link rel="stylesheet" href="css/sections/eventos.css"> </head>
+<body class="eventos-page">
+
+    <header class="main-header">
+        <a href="index.html"><img src="assets/logos/yasui-sas-logo.png" alt="YASUI" class="nav-logo"></a>
+        <nav class="nav-links">
+            <a href="index.html">Inicio</a>
+            <span id="user-badge" class="user-status-badge"></span>
+            <button id="btn-logout" class="btn-nav-logout" style="display: none;">Salir</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <header class="section-title">
+            <h1>Próximos Eventos 2026</h1>
+            <p>No te pierdas ninguna de nuestras experiencias temáticas</p>
+        </header>
+
+        <section id="admin-event-panel" class="admin-card" style="display: none;">
+            <h3><i class="fas fa-tools"></i> Gestionar Eventos (Modo Admin)</h3>
+            <div class="event-form">
+                <input type="text" id="ev-nombre" placeholder="Nombre del Evento">
+                <input type="date" id="ev-fecha">
+                <input type="text" id="ev-lugar" placeholder="Ubicación/Sede">
+                <button onclick="eventosApp.crear()">Publicar Evento</button>
+            </div>
+        </section>
+
+        <div id="grid-eventos" class="event-grid">
+            </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/eventos.js"></script>
+</body>
+</html>

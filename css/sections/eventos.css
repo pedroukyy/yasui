@@ -1,0 +1,54 @@
+/* Colores temáticos para Eventos (Gamas de Morado y Azul) */
+:root {
+    --event-primary: #6e48aa;
+    --event-secondary: #9d50bb;
+    --event-bg: #f4f7f6;
+}
+
+.eventos-page { background-color: var(--event-bg); }
+
+.section-title { text-align: center; margin: 40px 0; color: #002855; }
+.section-title h1 { font-size: 2.5rem; text-transform: uppercase; }
+
+/* Panel de Admin */
+.admin-card {
+    background: white; padding: 25px; border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 40px;
+    border-left: 5px solid var(--event-primary);
+}
+.event-form { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+.event-form input { 
+    padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 200px;
+}
+.event-form button {
+    background: var(--event-primary); color: white; border: none;
+    padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;
+}
+
+/* Grid de Eventos */
+.event-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; padding-bottom: 50px;
+}
+
+.event-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s;
+    position: relative;
+}
+.event-card:hover { transform: translateY(-10px); }
+
+.event-content { padding: 25px; }
+.event-content h2 { color: #333; margin-bottom: 15px; font-size: 1.5rem; }
+.event-info-row { display: flex; align-items: center; gap: 10px; color: #666; margin-bottom: 10px; }
+.event-info-row i { color: var(--event-primary); width: 20px; }
+
+.btn-reserve {
+    width: 100%; padding: 15px; background: linear-gradient(to right, #6e48aa, #9d50bb);
+    color: white; border: none; border-radius: 12px; font-weight: bold;
+    cursor: pointer; margin-top: 15px; text-transform: uppercase;
+}
+
+.btn-delete { background: #ff4757 !important; margin-top: 10px; font-size: 0.8rem; padding: 8px; }
+
+.user-status-badge { color: white; margin-right: 15px; font-size: 0.9rem; }

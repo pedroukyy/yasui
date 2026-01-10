@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YASUI - Inscripción a Concursos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sections/eventos.css"> </head>
+<body>
+    <nav style="padding: 20px;"><a href="index.html" style="color: white; text-decoration: none;">← Volver al Home</a></nav>
+
+    <main class="container">
+        <h1 class="titulo-yasui" style="font-size: 3rem;">Concursos 🏆</h1>
+
+        <section class="glass-card">
+            <h2 id="evento-nombre" style="color: #64ffda; margin-bottom: 20px;">Cargando concurso...</h2>
+            
+            <form id="form-concurso">
+                <div class="input-group">
+                    <label style="color: #8892b0; display: block; margin-bottom: 10px;">Nombre Completo / Nickname</label>
+                    <input type="text" id="participante-nombre" class="input-yasui" required>
+                </div>
+
+                <div class="input-group">
+                    <label style="color: #8892b0; display: block; margin-bottom: 10px;">Sube tu imagen para participar (Cosplay, Dibujo, etc.)</label>
+                    <input type="file" id="participante-img" class="input-yasui" accept="image/*" required>
+                </div>
+
+                <div id="preview-container" style="margin-bottom: 20px; display: none;">
+                    <img id="img-preview" src="#" style="width: 100%; border-radius: 10px; border: 1px solid var(--azul-brillante);">
+                </div>
+
+                <button type="submit" class="btn-contacto">Confirmar Inscripción</button>
+            </form>
+        </section>
+
+        <h2 class="titulo-yasui" style="font-size: 2rem; margin-top: 60px;">Participantes Actuales</h2>
+        <div class="eventos-grid" id="galeria-participantes">
+            </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Lógica específica para capturar el nombre del evento desde la URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const evento = params.get('evento') || "Concurso General";
+            document.getElementById('evento-nombre').innerText = "Participar en: " + decodeURIComponent(evento);
+        });
+    </script>
+</body>
+</html>

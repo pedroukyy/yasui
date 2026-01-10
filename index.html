@@ -3,45 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASUI - Home</title>
+    <title>YASUI - Cultura, Creatividad y Entretenimiento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <main class="home-container">
-        <h1 class="titulo-yasui">YASUI</h1>
+    <header class="main-header">
+        <img src="assets/logos/yasui-sas-logo.png" alt="YASUI" class="nav-logo">
+        <nav class="nav-links">
+            <a href="#">Quienes somos</a>
+            <a href="#">Ecosistema</a>
+            <a href="#">Alianzas</a>
+            <a href="#">Contacto</a>
+            
+            <span id="user-badge" style="color: white; font-weight: bold; margin-left: 15px; display: none;"></span>
+            
+            <button id="btn-sesion" class="btn-nav-login">Iniciar Sesión</button>
+            <button id="btn-logout" class="btn-nav-login" style="display: none; background: #ff4757;">Salir</button>
+        </nav>
+    </header>
+
+    <section class="hero-container">
+        <div class="hero-top">
+            <img src="assets/logos/yasui-sas-logo.png" alt="YASUI" class="hero-logo">
+            <p class="hero-slogan">Grupo empresarial de entretenimiento, cultura pop y experiencias</p>
+        </div>
 
         <div class="widgets-grid">
-            <a href="#" class="widget" id="btn-anime">
-                <div class="icon">🛒</div>
-                <span>Tienda</span>
+            <a href="tienda.html" class="w-card azul">
+                <div class="w-icon"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" width="40" style="filter:invert(1)"></div>
+                <div class="w-body">
+                    <h3>TIENDA</h3>
+                    <p>Yasui Tienda Anime</p>
+                </div>
             </a>
-
-            <a href="#" class="widget" id="btn-eventos">
-                <div class="icon">📅</div>
-                <span>Eventos</span>
+            <a href="eventos.html" class="w-card morado">
+                <div class="w-icon"><img src="https://cdn-icons-png.flaticon.com/512/432/432314.png" width="40" style="filter:invert(1)"></div>
+                <div class="w-body">
+                    <h3>EVENTOS</h3>
+                    <p>Eventos Animeday</p>
+                </div>
             </a>
-
-            <a href="#" class="widget" id="btn-fun">
-                <div class="icon">🏆</div>
-                <span>Concursos</span>
+            <a href="concursos.html" class="w-card naranja">
+                <div class="w-icon"><img src="https://cdn-icons-png.flaticon.com/512/1021/1021204.png" width="40" style="filter:invert(1)"></div>
+                <div class="w-body">
+                    <h3>CONCURSOS</h3>
+                    <p>Yasui Entretenimiento</p>
+                </div>
             </a>
-
-            <a href="#" class="widget" id="btn-pizza">
-                <div class="icon">🍕</div>
-                <span>Pizzería</span>
+            <a href="pizzeria.html" class="w-card amarillo">
+                <div class="w-icon"><img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" width="40" style="filter:invert(1)"></div>
+                <div class="w-body">
+                    <h3>PIZZERÍA</h3>
+                    <p>PizzAnime</p>
+                </div>
             </a>
-
-            <a href="#" class="widget" id="btn-mapa">
-                <div class="icon">📍</div>
-                <span>Ubicación</span>
+            <a href="ubicacion.html" class="w-card verde">
+                <div class="w-icon"><img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" width="40" style="filter:invert(1)"></div>
+                <div class="w-body">
+                    <h3>SEDES</h3>
+                    <p>Ubicaciones & Experiencias</p>
+                </div>
             </a>
+        </div>
 
-            <div class="btn-contacto-container">
-                <button class="btn-contacto">Contáctanos</button>
+        <div class="stats-container">
+            <div class="stat-box"><span id="stat-eventos">0</span> Eventos Realizados</div>
+            <div class="stat-divider"></div>
+            <div class="stat-box"><span id="stat-comunidad">0</span> Comunidad Activa</div>
+            <div class="stat-divider"></div>
+            <div class="stat-box"><span>10</span> años de experiencia</div>
+        </div>
+    </section>
+
+    <section class="ecosistema-section">
+        <h2 class="eco-title">Nuestro Ecosistema</h2>
+        <div class="eco-grid">
+            <div class="eco-card eco-tienda">
+                <img src="assets/logos/logo-yasui-2026-png.png" alt="Tienda">
+            </div>
+            <div class="eco-card eco-pizzanime">
+                <img src="assets/logos/logopizzanime2026.png" alt="PizzAnime">
+            </div>
+            <div class="eco-card eco-animeday">
+                <img src="assets/logos/LOGO ANIMEDAY 2026 PNG.png" alt="Anime Day">
+            </div>
+            <div class="eco-card eco-entretenimiento">
+                <img src="assets/logos/LOGO-YASUI-ENTRETENIMIENTO-2026.png" alt="Entretenimiento">
             </div>
         </div>
-    </main>
+    </section>
 
+    <footer class="main-footer">
+        <div class="footer-content">
+            <img src="assets/logos/yasui-sas-logo.png" class="footer-logo">
+            <p>© 2024 Grupo Empresarial YASUI</p>
+            <p>info@grupoYASUI.com</p>
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal-login" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-tabs">
+                <button id="tab-login" class="tab-btn active" onclick="auth.switchTab('login')">Entrar</button>
+                <button id="tab-register" class="tab-btn" onclick="auth.switchTab('register')">Registrarse</button>
+            </div>
+
+            <div id="form-login">
+                <input type="text" id="user-input" placeholder="Nickname" class="input-yasui">
+                <input type="password" id="pass-input" placeholder="Contraseña" class="input-yasui">
+                <button id="btn-auth-submit" class="btn-auth" onclick="auth.login()">Entrar</button>
+            </div>
+
+            <div id="form-register" style="display: none;">
+                <input type="text" id="reg-nick" placeholder="Nickname" class="input-yasui">
+                <input type="password" id="reg-pass" placeholder="Crear Contraseña" class="input-yasui">
+                <button class="btn-auth" onclick="auth.register()">Registrarme</button>
+            </div>
+
+            <button onclick="auth.cerrarModal()" class="btn-close">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YASUI - Tienda Anime</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sections/eventos.css"> </head>
+<body>
+    <nav style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <a href="index.html" style="color: white; text-decoration: none;">← Volver al Home</a>
+        <div id="cart-counter" style="background: var(--azul-brillante); padding: 5px 15px; border-radius: 20px; font-weight: bold;">
+            🛒 Carrito: 0
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="titulo-yasui" style="font-size: 3.5rem;">Tienda Anime</h1>
+
+        <section class="admin-panel glass-card" style="display: none; margin-bottom: 50px;">
+            <h2 style="color: #64ffda; margin-bottom: 20px;">Gestionar Inventario</h2>
+            <form id="form-tienda">
+                <input type="text" id="prod-nombre" placeholder="Nombre del Producto (Ej: Figura Luffy)" class="input-yasui" required>
+                <input type="number" id="prod-precio" placeholder="Precio ($)" class="input-yasui" required>
+                <select id="prod-categoria" class="input-yasui">
+                    <option value="figuras">Figuras</option>
+                    <option value="manga">Manga</option>
+                    <option value="ropa">Ropa</option>
+                </select>
+                <input type="text" id="prod-img" placeholder="URL de la imagen" class="input-yasui" required>
+                <button type="submit" class="btn-contacto">Agregar a la Tienda</button>
+            </form>
+        </section>
+
+        <div class="eventos-grid" id="catalogo-productos">
+            </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
