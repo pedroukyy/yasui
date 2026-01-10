@@ -1,11 +1,21 @@
-// Credenciales maestras
-const CREDENCIALES = {
-    "admin": { pass: "admin123", rol: "admin" },
-    "cliente": { pass: "cliente123", rol: "cliente" }
-};
-
 const auth = {
-    // Alternar entre Login y Registro
+    user: null,
+
+    init: () => {
+        // Al cargar, revisamos si hay algo guardado en el navegador
+        const savedSession = localStorage.getItem('yasui_session');
+        if (savedSession) {
+            auth.user = JSON.parse(savedSession);
+        }
+        auth.updateUI();
+        
+        // Listeners
+        document.getElementById('btn-sesion')?.addEventListener('click', () => {
+            document.getElementById('modal-login').style.display = 'flex';
+        });
+        document.getElementById('btn-logout')?.addEventListener('click', auth.logout);
+    },
+
     switchTab: (tab) => {
         const isLogin = tab === 'login';
         document.getElementById('form-login').style.display = isLogin ? 'block' : 'none';
@@ -14,79 +24,102 @@ const auth = {
         document.getElementById('tab-register').classList.toggle('active', !isLogin);
     },
 
-    login: () => {
-        const userVal = document.getElementById('user-input').value; // Cambiado a tus IDs de HTML
-        const passVal = document.getElementById('pass-input').value;
-        const usuariosExtra = JSON.parse(localStorage.getItem('usuariosYasui')) || {};
+    login: async () => {
+        const username = document.getElementById('user-input').value;
+        const password = document.getElementById('pass-input').value;
 
-        let userFound = null;
+        try {
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
 
-        // 1. Buscar en credenciales fijas
-        if (CREDENCIALES[userVal] && CREDENCIALES[userVal].pass === passVal) {
-            userFound = { nombre: userVal, rol: CREDENCIALES[userVal].rol };
-        } 
-        // 2. Buscar en usuarios registrados manualmente
-        else if (usuariosExtra[userVal] && usuariosExtra[userVal].pass === passVal) {
-            userFound = { nombre: userVal, rol: "cliente" };
-        }
-
-        if (userFound) {
-            localStorage.setItem('sessionYasui', JSON.stringify(userFound));
-            location.reload();
-        } else {
-            alert("Usuario o contraseña incorrectos.");
+            if (data.success) {
+                auth.user = data.user;
+                // Guardamos la sesión en el navegador
+                localStorage.setItem('yasui_session', JSON.stringify(data.user));
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error al conectar con el servidor");
         }
     },
 
-    register: () => {
-        const nick = document.getElementById('reg-nick').value;
-        const pass = document.getElementById('reg-pass').value;
-        
-        if (!nick || !pass) return alert("Nickname y Contraseña son obligatorios");
+    register: async () => {
+        // Capturar todos los campos nuevos
+        const username = document.getElementById('reg-nick').value;
+        const email = document.getElementById('reg-email').value;
+        const fullName = document.getElementById('reg-fullname').value;
+        const phone = document.getElementById('reg-phone').value;
+        const password = document.getElementById('reg-pass').value;
 
-        let usuariosExtra = JSON.parse(localStorage.getItem('usuariosYasui')) || {};
-        usuariosExtra[nick] = { pass: pass };
-        
-        localStorage.setItem('usuariosYasui', JSON.stringify(usuariosExtra));
-        alert("¡Registro exitoso! Ya puedes entrar.");
-        auth.switchTab('login');
+        // Validar que no estén vacíos
+        if (!username || !email || !fullName || !password) {
+            return alert("Por favor completa todos los campos obligatorios.");
+        }
+
+        try {
+            const res = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    username, 
+                    email, 
+                    fullName, 
+                    phone, 
+                    password 
+                })
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                // Mensaje importante para el usuario
+                alert("¡Registro creado! ✉️ REVISA TU CORREO para activar la cuenta antes de entrar.");
+                auth.switchTab('login');
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error al registrarse");
+        }
     },
 
     logout: () => {
-        localStorage.removeItem('sessionYasui');
-        location.href = 'index.html'; // Al salir siempre vuelve al inicio
+        auth.user = null;
+        localStorage.removeItem('yasui_session');
+        location.href = 'index.html';
     },
 
-    checkStatus: () => {
-        const session = JSON.parse(localStorage.getItem('sessionYasui'));
+    updateUI: () => {
         const btnLogin = document.getElementById('btn-sesion');
         const btnLogout = document.getElementById('btn-logout');
         const badge = document.getElementById('user-badge');
+        const adminPanel = document.getElementById('admin-event-panel');
 
-        if (session) {
+        if (auth.user) {
             if (btnLogin) btnLogin.style.display = 'none';
             if (btnLogout) btnLogout.style.display = 'inline-block';
             if (badge) {
                 badge.style.display = 'inline-block';
                 badge.style.color = 'white';
-                badge.innerText = `Hola, ${session.nombre} ${session.rol === 'admin' ? '⚡' : '👤'}`;
+                badge.innerText = `Hola, ${auth.user.nombre} ${auth.user.rol === 'admin' ? '⚡' : '👤'}`;
+            }
+            // Mostrar panel admin si aplica
+            if (auth.user.rol === 'admin' && adminPanel) {
+                adminPanel.style.display = 'block';
             }
         }
+    },
+    
+    cerrarModal: () => {
+        document.getElementById('modal-login').style.display = 'none';
     }
 };
 
-// Listeners Globales
-document.addEventListener('DOMContentLoaded', () => {
-    auth.checkStatus();
-
-    // Eventos de botones (si existen en la página actual)
-    document.getElementById('btn-sesion')?.addEventListener('click', () => {
-        document.getElementById('modal-login').style.display = 'flex';
-    });
-    
-    document.getElementById('btn-logout')?.addEventListener('click', auth.logout);
-});
-
-function cerrarModal() {
-    document.getElementById('modal-login').style.display = 'none';
-}
+document.addEventListener('DOMContentLoaded', auth.init);

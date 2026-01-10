@@ -116,13 +116,16 @@
             </div>
 
             <div id="form-login">
-                <input type="text" id="user-input" placeholder="Nickname" class="input-yasui">
-                <input type="password" id="pass-input" placeholder="Contraseña" class="input-yasui">
-                <button id="btn-auth-submit" class="btn-auth" onclick="auth.login()">Entrar</button>
+                 <input type="text" id="user-input" placeholder="Usuario o Correo Electrónico" class="input-yasui">
+                 <input type="password" id="pass-input" placeholder="Contraseña" class="input-yasui">
+                 <button id="btn-auth-submit" class="btn-auth" onclick="auth.login()">Entrar</button>
             </div>
 
             <div id="form-register" style="display: none;">
-                <input type="text" id="reg-nick" placeholder="Nickname" class="input-yasui">
+                 <input type="text" id="reg-nick" placeholder="Usuario" class="input-yasui">
+                <input type="email" id="reg-email" placeholder="Correo Electrónico" class="input-yasui">
+                <input type="text" id="reg-fullname" placeholder="Nombre Completo" class="input-yasui">
+                <input type="tel" id="reg-phone" placeholder="Teléfono" class="input-yasui">
                 <input type="password" id="reg-pass" placeholder="Crear Contraseña" class="input-yasui">
                 <button class="btn-auth" onclick="auth.register()">Registrarme</button>
             </div>
