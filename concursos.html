@@ -3,50 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASUI - Inscripción a Concursos</title>
+    <title>Concursos - YASUI</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/sections/eventos.css"> </head>
-<body>
-    <nav style="padding: 20px;"><a href="index.html" style="color: white; text-decoration: none;">← Volver al Home</a></nav>
+    <link rel="stylesheet" href="css/sections/concursos.css">
+</head>
+<body class="bg-navy">
+    <nav class="navbar-main">
+        <div class="container nav-flex">
+            <div class="brand">
+                <img src="assets/img/logo.png" alt="YASUI" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Quienes somos</a></li>
+                <li><a href="ecosistema.html">Ecosistema</a></li>
+                <li><a href="alianzas.html">Alianzas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li id="adminNav" class="admin-session" style="display: none;">
+                    <span>Hola, admin ⚡</span>
+                    <button onclick="logout()" class="btn-logout">Salir</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-hero text-center">
+        <div class="hero-icon">🏆</div>
+        <h1>CONCURSOS</h1>
+        <p>Gestión cultural y participación de comunidad</p>
+    </header>
 
     <main class="container">
-        <h1 class="titulo-yasui" style="font-size: 3rem;">Concursos 🏆</h1>
-
-        <section class="glass-card">
-            <h2 id="evento-nombre" style="color: #64ffda; margin-bottom: 20px;">Cargando concurso...</h2>
-            
-            <form id="form-concurso">
-                <div class="input-group">
-                    <label style="color: #8892b0; display: block; margin-bottom: 10px;">Nombre Completo / Nickname</label>
-                    <input type="text" id="participante-nombre" class="input-yasui" required>
+        <section id="adminZone" class="admin-card-panel" style="display: none;">
+            <div class="admin-header">
+                <h3>🛠️ Gestión de Concursos (Modo Admin)</h3>
+            </div>
+            <form id="formConcurso" class="admin-form">
+                <input type="hidden" id="editIndex">
+                <div class="form-row">
+                    <input type="text" id="cTitle" placeholder="Nombre del Concurso" required>
+                    <input type="text" id="cDate" placeholder="Fecha de Cierre (Ej: 10 Marzo 2025)" required>
                 </div>
-
-                <div class="input-group">
-                    <label style="color: #8892b0; display: block; margin-bottom: 10px;">Sube tu imagen para participar (Cosplay, Dibujo, etc.)</label>
-                    <input type="file" id="participante-img" class="input-yasui" accept="image/*" required>
+                <div class="form-row">
+                    <input type="text" id="cImg" placeholder="Ruta de imagen (assets/img/...)" required>
+                    <select id="cStatus">
+                        <option value="badge-open">Inscripciones Abiertas</option>
+                        <option value="badge-progress">En Progreso</option>
+                    </select>
                 </div>
-
-                <div id="preview-container" style="margin-bottom: 20px; display: none;">
-                    <img id="img-preview" src="#" style="width: 100%; border-radius: 10px; border: 1px solid var(--azul-brillante);">
+                <div class="form-row">
+                    <input type="text" id="cP1" placeholder="Premio 1er Lugar" required>
+                    <input type="text" id="cP2" placeholder="Premio 2do Lugar">
                 </div>
-
-                <button type="submit" class="btn-contacto">Confirmar Inscripción</button>
+                <div class="admin-footer">
+                    <button type="submit" id="btnSubmit" class="btn-save">Publicar Concurso</button>
+                    <button type="button" onclick="resetForm()" class="btn-cancel">Limpiar</button>
+                </div>
             </form>
         </section>
 
-        <h2 class="titulo-yasui" style="font-size: 2rem; margin-top: 60px;">Participantes Actuales</h2>
-        <div class="eventos-grid" id="galeria-participantes">
+        <section class="section-spacing">
+            <h2 class="section-label">🕒 Concursos Activos</h2>
+            <div id="gridActivos" class="concursos-grid">
+                </div>
+        </section>
+
+        <section class="section-spacing">
+            <h2 class="section-label">Concursos Permanentes</h2>
+            <div class="permanentes-grid">
+                <div class="p-card">
+                    <span class="p-emoji">🎮</span>
+                    <h4>Liga Gamer YASUI</h4>
+                    <p>Torneos semanales de diversos videojuegos</p>
+                    <span class="p-tag">👥 500+ participantes</span>
+                </div>
+                <div class="p-card">
+                    <span class="p-emoji">🎲</span>
+                    <h4>Club de Rol</h4>
+                    <p>Partidas de D&D, Warhammer y más</p>
+                    <span class="p-tag">👥 200+ participantes</span>
+                </div>
+                <div class="p-card">
+                    <span class="p-emoji">🎨</span>
+                    <h4>Comunidad de Artistas</h4>
+                    <p>Retos mensuales de ilustración</p>
+                    <span class="p-tag">👥 300+ participantes</span>
+                </div>
             </div>
+        </section>
+
+        <section class="section-spacing mb-5">
+            <h2 class="section-label">Ganadores Recientes</h2>
+            <div class="ganadores-grid">
+                <div class="winner-item">
+                    <img src="assets/img/cosplay-winner.jpg" alt="Ganador">
+                    <div class="winner-text">
+                        <h5>Cosplay Championship 2024</h5>
+                        <p>🏆 María García - Tanjiro Kamado</p>
+                    </div>
+                </div>
+                </div>
+        </section>
     </main>
 
-    <script src="js/main.js"></script>
-    <script>
-        // Lógica específica para capturar el nombre del evento desde la URL
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const evento = params.get('evento') || "Concurso General";
-            document.getElementById('evento-nombre').innerText = "Participar en: " + decodeURIComponent(evento);
-        });
-    </script>
+    <script src="js/concursos.js"></script>
 </body>
 </html>

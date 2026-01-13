@@ -1,0 +1,60 @@
+:root {
+    --navy: #051937;
+    --orange: #f39c12;
+    --green: #27ae60;
+    --white: #ffffff;
+    --gray-text: #666666;
+}
+
+body.bg-navy { background-color: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Navbar */
+.navbar-main { padding: 25px 0; background: transparent; }
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; margin: 0; }
+.nav-links a { color: var(--white); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+.admin-session { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px; display: flex; align-items: center; gap: 15px; }
+.btn-logout { background: transparent; color: white; border: 1px solid white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+/* Hero */
+.page-hero { padding: 60px 0; }
+.hero-icon { background: var(--orange); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2rem; }
+
+/* Panel Admin */
+.admin-card-panel { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin-bottom: 50px; }
+.admin-form .form-row { display: flex; gap: 20px; margin-bottom: 15px; }
+.admin-form input, .admin-form select { flex: 1; padding: 12px; border-radius: 8px; border: none; font-size: 1rem; }
+.btn-save { background: var(--green); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.btn-cancel { background: #95a5a6; color: white; border: none; padding: 12px 30px; border-radius: 8px; margin-left: 10px; cursor: pointer; }
+
+/* Grid Concursos Activos (Tarjetas Blancas) */
+.concursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.card-yasui { background: var(--white); border-radius: 18px; overflow: hidden; color: #333; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.card-yasui:hover { transform: translateY(-10px); }
+.card-banner { position: relative; height: 200px; }
+.card-banner img { width: 100%; height: 100%; object-fit: cover; }
+
+.status-label { position: absolute; top: 15px; left: 15px; padding: 6px 15px; border-radius: 6px; color: white; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+.badge-open { background: var(--orange); }
+.badge-progress { background: var(--green); }
+
+.card-body { padding: 25px; }
+.card-body h3 { margin: 0 0 10px; font-size: 1.4rem; color: var(--navy); }
+.card-date { color: var(--gray-text); display: block; margin-bottom: 20px; font-size: 0.9rem; }
+.prize-box { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+.prize-box p { margin: 5px 0; color: var(--green); font-weight: bold; }
+.btn-action { width: 100%; background: var(--orange); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+
+/* Secciones Permanentes y Ganadores */
+.permanentes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+.p-card { background: rgba(255, 255, 255, 0.08); padding: 30px; border-radius: 15px; text-align: center; }
+.p-tag { color: var(--orange); font-weight: bold; font-size: 0.85rem; }
+
+.ganadores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.winner-item { background: white; border-radius: 12px; overflow: hidden; color: #333; }
+.winner-item img { width: 100%; height: 160px; object-fit: cover; }
+.winner-text { padding: 15px; }
+
+.section-spacing { margin-top: 60px; }
+.section-label { border-left: 4px solid var(--orange); padding-left: 15px; margin-bottom: 30px; }

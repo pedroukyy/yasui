@@ -5,37 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YASUI - Eventos y Experiencias</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css"> <link rel="stylesheet" href="css/sections/eventos.css"> </head>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <link rel="stylesheet" href="css/sections/eventos.css"> 
+</head>
 <body class="eventos-page">
 
     <header class="main-header">
         <a href="index.html"><img src="assets/logos/yasui-sas-logo.png" alt="YASUI" class="nav-logo"></a>
         <nav class="nav-links">
-            <a href="index.html">Inicio</a>
+            <a href="quienes-somos.html">Quienes somos</a>
+            <a href="ecosistema.html">Ecosistema</a>
+            <a href="alianzas.html">Alianzas</a>
+            <a href="contacto.html">Contacto</a>
             <span id="user-badge" class="user-status-badge"></span>
             <button id="btn-logout" class="btn-nav-logout" style="display: none;">Salir</button>
         </nav>
     </header>
 
-    <main class="container">
-        <header class="section-title">
-            <h1>Próximos Eventos 2026</h1>
-            <p>No te pierdas ninguna de nuestras experiencias temáticas</p>
-        </header>
+    <main class="content-wrapper">
+        <section class="eventos-hero">
+            <div class="hero-icon"><i class="fas fa-ticket-alt"></i></div>
+            <h1>EVENTOS</h1>
+            <p>Eventos Animeday - Venta de boletería + portafolio institucional</p>
+        </section>
 
         <section id="admin-event-panel" class="admin-card" style="display: none;">
-            <h3><i class="fas fa-tools"></i> Gestionar Eventos (Modo Admin)</h3>
+            <h3><i class="fas fa-tools"></i> Gestión de Eventos (Modo Admin)</h3>
             <div class="event-form">
                 <input type="text" id="ev-nombre" placeholder="Nombre del Evento">
-                <input type="date" id="ev-fecha">
-                <input type="text" id="ev-lugar" placeholder="Ubicación/Sede">
+                <input type="text" id="ev-fecha-txt" placeholder="Fecha (Ej: 15-16 Marzo 2026)">
+                <input type="text" id="ev-lugar" placeholder="Lugar/Sede">
+                <input type="text" id="ev-precio" placeholder="Precio (Ej: 25.000)">
+                
+                <select id="ev-img">
+                    <option value="">-- Seleccionar Imagen --</option>
+                    <option value="assets/logos/evento-anime.jpg">Convención Anime</option>
+                    <option value="assets/logos/evento-gaming.jpg">Torneo Gaming</option>
+                    <option value="assets/logos/yasui-sas-logo.png">Logo YASUI</option>
+                </select>
+
+                <select id="ev-estado">
+                    <option value="actual">Actual (Con venta)</option>
+                    <option value="proximo">Próximamente</option>
+                    <option value="realizado">Realizado</option>
+                </select>
                 <button onclick="eventosApp.crear()">Publicar Evento</button>
             </div>
         </section>
 
-        <div id="grid-eventos" class="event-grid">
+        <div class="section-label"><i class="far fa-calendar-alt"></i> Eventos Actuales</div>
+        <div id="grid-actuales" class="event-grid">
             </div>
+
+        <div class="section-label">Próximos Eventos</div>
+        <div id="grid-proximos" class="proximos-list">
+            </div>
+
+        <div class="section-label">Tipos de Eventos</div>
+        <div class="tipos-grid">
+            <div class="tipo-card">
+                <i class="fas fa-university icon-convenciones"></i>
+                <h4>Convenciones</h4>
+                <p>Invitados especiales y stands.</p>
+            </div>
+            <div class="tipo-card">
+                <i class="fas fa-tent icon-festivales"></i>
+                <h4>Festivales</h4>
+                <p>Música y cultura al aire libre.</p>
+            </div>
+            <div class="tipo-card">
+                <i class="fas fa-gamepad icon-ferias"></i>
+                <h4>Ferias</h4>
+                <p>Tecnología y emprendimiento.</p>
+            </div>
+            <div class="tipo-card">
+                <i class="fas fa-bolt icon-activaciones"></i>
+                <h4>Activaciones</h4>
+                <p>Experiencias de marca únicas.</p>
+            </div>
+        </div>
     </main>
+
+    <footer class="eventos-footer">
+        <img src="assets/logos/yasui-sas-logo.png" alt="YASUI">
+        <p>© 2026 Grupo Empresarial YASUI | info@grupoYASUI.com</p>
+    </footer>
 
     <script src="js/auth.js"></script>
     <script src="js/eventos.js"></script>

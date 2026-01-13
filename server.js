@@ -163,3 +163,24 @@ app.post('/api/reservar', async (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor YASUI corriendo en http://localhost:${port}`);
 });
+
+// A. Crear Evento
+app.post('/api/admin/events', async (req, res) => {
+    const { titulo, descripcion, fecha_texto, lugar, precio, imagen_url, categoria, estado } = req.body;
+    try {
+        await pool.query(
+            `INSERT INTO events (titulo, descripcion, fecha_texto, lugar, precio, imagen_url, categoria, estado) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+            [titulo, descripcion, fecha_texto, lugar, precio, imagen_url, categoria, estado]
+        );
+        res.json({ success: true, message: "Evento creado" });
+    } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// B. Eliminar Evento
+app.delete('/api/admin/events/:id', async (req, res) => {
+    try {
+        await pool.query('DELETE FROM events WHERE id = $1', [req.params.id]);
+        res.json({ success: true });
+    } catch (err) { res.status(500).json({ error: err.message }); }
+});

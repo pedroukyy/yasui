@@ -1,54 +1,159 @@
-/* Colores temáticos para Eventos (Gamas de Morado y Azul) */
-:root {
-    --event-primary: #6e48aa;
-    --event-secondary: #9d50bb;
-    --event-bg: #f4f7f6;
+/* --- CONFIGURACIÓN BASE PARA EVENTOS --- */
+.eventos-page {
+    background-color: #002855; /* Azul oscuro del header de tu inicio */
+    color: white;
 }
 
-.eventos-page { background-color: var(--event-bg); }
-
-.section-title { text-align: center; margin: 40px 0; color: #002855; }
-.section-title h1 { font-size: 2.5rem; text-transform: uppercase; }
-
-/* Panel de Admin */
-.admin-card {
-    background: white; padding: 25px; border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 40px;
-    border-left: 5px solid var(--event-primary);
-}
-.event-form { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-.event-form input { 
-    padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 200px;
-}
-.event-form button {
-    background: var(--event-primary); color: white; border: none;
-    padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Grid de Eventos */
+/* --- HERO DE EVENTOS --- */
+.eventos-hero {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero-icon {
+    background: #7b2cbf; /* Morado YASUI */
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 12px;
+    margin: 0 auto 15px;
+    font-size: 1.2rem;
+}
+
+/* --- ETIQUETAS DE SECCIÓN --- */
+.section-label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+}
+
+/* --- GRID DE EVENTOS ACTUALES (Tarjetas Blancas) --- */
 .event-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px; padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.event-card {
-    background: white; border-radius: 20px; overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s;
-    position: relative;
-}
-.event-card:hover { transform: translateY(-10px); }
-
-.event-content { padding: 25px; }
-.event-content h2 { color: #333; margin-bottom: 15px; font-size: 1.5rem; }
-.event-info-row { display: flex; align-items: center; gap: 10px; color: #666; margin-bottom: 10px; }
-.event-info-row i { color: var(--event-primary); width: 20px; }
-
-.btn-reserve {
-    width: 100%; padding: 15px; background: linear-gradient(to right, #6e48aa, #9d50bb);
-    color: white; border: none; border-radius: 12px; font-weight: bold;
-    cursor: pointer; margin-top: 15px; text-transform: uppercase;
+.card-actual {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #333;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
 }
 
-.btn-delete { background: #ff4757 !important; margin-top: 10px; font-size: 0.8rem; padding: 8px; }
+.card-actual:hover { transform: translateY(-8px); }
 
-.user-status-badge { color: white; margin-right: 15px; font-size: 0.9rem; }
+.card-img-container { position: relative; height: 180px; }
+.card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.badge-cat {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: #7b2cbf;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.card-body { padding: 20px; }
+.card-body h3 { margin: 0 0 10px; font-size: 1.25rem; color: #002855; }
+.event-meta { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.btn-buy {
+    background: #7b2cbf;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- SECCIÓN TIPOS DE EVENTOS (LOS CUADROS) --- */
+.tipos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.tipo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.tipo-card:hover { 
+    background: #f8f9fa;
+    transform: scale(1.03); 
+}
+
+.tipo-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Colores de iconos específicos */
+.icon-convenciones { color: #004aad; }
+.icon-festivales { color: #ff4d6d; }
+.icon-ferias { color: #7b2cbf; }
+.icon-activaciones { color: #f1a906; }
+
+.tipo-card h4 { color: #002855; margin: 0; font-size: 1.1rem; }
+
+/* --- PANEL ADMIN (Glassmorphism) --- */
+.admin-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.event-form input, .event-form select {
+    background: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-publish {
+    background: #2ecc71;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
