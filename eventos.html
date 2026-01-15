@@ -3,93 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YASUI - Eventos y Experiencias</title>
+    <title>YASUI - Eventos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css"> 
-    <link rel="stylesheet" href="css/sections/eventos.css"> 
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sections/eventos.css">
 </head>
-<body class="eventos-page">
-
+<body class="eventos-page-dark">
     <header class="main-header">
         <a href="index.html"><img src="assets/logos/yasui-sas-logo.png" alt="YASUI" class="nav-logo"></a>
         <nav class="nav-links">
             <a href="quienes-somos.html">Quienes somos</a>
-            <a href="ecosistema.html">Ecosistema</a>
-            <a href="alianzas.html">Alianzas</a>
             <a href="contacto.html">Contacto</a>
             <span id="user-badge" class="user-status-badge"></span>
             <button id="btn-logout" class="btn-nav-logout" style="display: none;">Salir</button>
         </nav>
     </header>
 
-    <main class="content-wrapper">
-        <section class="eventos-hero">
-            <div class="hero-icon"><i class="fas fa-ticket-alt"></i></div>
-            <h1>EVENTOS</h1>
-            <p>Eventos Animeday - Venta de boletería + portafolio institucional</p>
-        </section>
+    <div id="main-hero-slider" class="hero-slider">
+        <div class="slider-track" id="hero-slider-track"></div>
+        <button class="slider-arrow prev" onclick="eventosApp.moveSlider(-1)">&#10094;</button>
+        <button class="slider-arrow next" onclick="eventosApp.moveSlider(1)">&#10095;</button>
+        <div class="slider-indicators" id="hero-slider-indicators"></div>
+    </div>
 
-        <section id="admin-event-panel" class="admin-card" style="display: none;">
-            <h3><i class="fas fa-tools"></i> Gestión de Eventos (Modo Admin)</h3>
-            <div class="event-form">
-                <input type="text" id="ev-nombre" placeholder="Nombre del Evento">
-                <input type="text" id="ev-fecha-txt" placeholder="Fecha (Ej: 15-16 Marzo 2026)">
-                <input type="text" id="ev-lugar" placeholder="Lugar/Sede">
-                <input type="text" id="ev-precio" placeholder="Precio (Ej: 25.000)">
+    <main class="content-wrapper-dark">
+        <section id="admin-event-panel" class="admin-card-dark" style="display: none;">
+            <h3><i class="fas fa-tools"></i> Admin</h3>
+            <div class="event-form" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input type="file" id="ev-image" class="input-yasui-dark" style="flex:1;">
+                <input type="text" id="ev-nombre" placeholder="Nombre del evento" class="input-yasui-dark" style="flex:1;">
                 
-                <select id="ev-img">
-                    <option value="">-- Seleccionar Imagen --</option>
-                    <option value="assets/logos/evento-anime.jpg">Convención Anime</option>
-                    <option value="assets/logos/evento-gaming.jpg">Torneo Gaming</option>
-                    <option value="assets/logos/yasui-sas-logo.png">Logo YASUI</option>
+                <select id="ev-categoria" class="input-yasui-dark" style="flex:1;">
+                    <option value="">-- Seleccionar Categoría --</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Cosplay">Cosplay</option>
+                    <option value="Dibujo">Dibujo</option>
+                    <option value="Creatividad">Creatividad</option>
+                    <option value="Videojuegos">Videojuegos</option>
+                    <option value="Torneos">Torneos</option>
                 </select>
 
-                <select id="ev-estado">
-                    <option value="actual">Actual (Con venta)</option>
-                    <option value="proximo">Próximamente</option>
-                    <option value="realizado">Realizado</option>
-                </select>
-                <button onclick="eventosApp.crear()">Publicar Evento</button>
+                <input type="date" id="ev-fecha" class="input-yasui-dark">
+                <input type="text" id="ev-lugar" placeholder="Lugar" class="input-yasui-dark">
+                <button onclick="eventosApp.crear()" class="btn-publish-dark">Publicar Evento</button>
             </div>
         </section>
 
-        <div class="section-label"><i class="far fa-calendar-alt"></i> Eventos Actuales</div>
-        <div id="grid-actuales" class="event-grid">
-            </div>
+        <div id="categories-container">
+            
+            <section class="category-row" data-category="Anime" style="--cat-color: #ff4757;">
+                <h2 class="category-title">Anime</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
 
-        <div class="section-label">Próximos Eventos</div>
-        <div id="grid-proximos" class="proximos-list">
-            </div>
+            <section class="category-row" data-category="Cosplay" style="--cat-color: #9b59b6;">
+                <h2 class="category-title">Cosplay</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
 
-        <div class="section-label">Tipos de Eventos</div>
-        <div class="tipos-grid">
-            <div class="tipo-card">
-                <i class="fas fa-university icon-convenciones"></i>
-                <h4>Convenciones</h4>
-                <p>Invitados especiales y stands.</p>
-            </div>
-            <div class="tipo-card">
-                <i class="fas fa-tent icon-festivales"></i>
-                <h4>Festivales</h4>
-                <p>Música y cultura al aire libre.</p>
-            </div>
-            <div class="tipo-card">
-                <i class="fas fa-gamepad icon-ferias"></i>
-                <h4>Ferias</h4>
-                <p>Tecnología y emprendimiento.</p>
-            </div>
-            <div class="tipo-card">
-                <i class="fas fa-bolt icon-activaciones"></i>
-                <h4>Activaciones</h4>
-                <p>Experiencias de marca únicas.</p>
-            </div>
+            <section class="category-row" data-category="Dibujo" style="--cat-color: #3498db;">
+                <h2 class="category-title">Dibujo</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
+
+            <section class="category-row" data-category="Creatividad" style="--cat-color: #f1c40f;">
+                <h2 class="category-title">Creatividad</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
+
+            <section class="category-row" data-category="Videojuegos" style="--cat-color: #2ecc71;">
+                <h2 class="category-title">Videojuegos</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
+
+            <section class="category-row" data-category="Torneos" style="--cat-color: #e67e22;">
+                <h2 class="category-title">Torneos</h2>
+                <div class="category-slider-container">
+                    <div class="category-slider-track"></div>
+                </div>
+            </section>
+            
         </div>
     </main>
 
-    <footer class="eventos-footer">
-        <img src="assets/logos/yasui-sas-logo.png" alt="YASUI">
-        <p>© 2026 Grupo Empresarial YASUI | info@grupoYASUI.com</p>
-    </footer>
+    <div id="modal-gallery" class="modal" style="display: none; position: fixed; z-index: 3000; top:0; left:0; width:100%; height:100%;">
+        <div class="modal-content-social">
+            <div class="gallery-main-area">
+                <button class="nav-btn nav-prev" onclick="galleryApp.prevPhoto()">&#10094;</button>
+                <img id="gallery-main-img" src="">
+                <button class="nav-btn nav-next" onclick="galleryApp.nextPhoto()">&#10095;</button>
+            </div>
+            <div class="gallery-sidebar">
+                <div class="sidebar-header">
+                    <h4 id="gallery-photo-user" style="margin:0;">YASUI</h4>
+                    <span onclick="document.getElementById('modal-gallery').style.display='none'" style="cursor:pointer;">&times;</span>
+                </div>
+                <div id="gallery-comments-list" class="sidebar-scroll-area"></div>
+                <div class="sidebar-footer">
+                    <div class="reaction-bar" style="display:flex; gap:15px; margin-bottom:10px;">
+                        <button class="reaction-btn" onclick="galleryApp.like(true)" style="background:none; border:none; color:#aaa; cursor:pointer;">👍 <span id="count-likes">0</span></button>
+                        <button class="reaction-btn" onclick="galleryApp.like(false)" style="background:none; border:none; color:#aaa; cursor:pointer;">👎 <span id="count-dislikes">0</span></button>
+                    </div>
+                    <div style="display:flex; gap:5px;">
+                        <input id="new-comment" placeholder="Comentar..." class="input-yasui-dark">
+                        <button onclick="galleryApp.sendInteraction()" style="background:none; border:none; color:#3498db; cursor:pointer;">Enviar</button>
+                    </div>
+                    <div id="admin-upload-mini" style="display:none; margin-top:10px;">
+                        <input type="file" id="mini-upload" style="color:white;"> <button onclick="galleryApp.uploadMini()">Subir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-reserva" class="modal" style="display: none; position: fixed; z-index: 4000; top:0; left:0; width:100%; height:100%;">
+        <div class="admin-card-dark" style="width:400px; max-width:90%; position: relative;">
+            <span onclick="document.getElementById('modal-reserva').style.display='none'" style="float:right; cursor:pointer; font-size:1.5em;">&times;</span>
+            <h2 style="margin-top:0; color:var(--accent);">Inscripción</h2>
+            <p id="reserva-evento-titulo" style="font-weight:bold;"></p>
+            <div id="reserva-dynamic-fields"></div>
+            <button onclick="eventosApp.confirmarInscripcion()" class="btn-publish-dark" style="margin-top:20px; background:var(--accent);">Confirmar</button>
+        </div>
+    </div>
 
     <script src="js/auth.js"></script>
     <script src="js/eventos.js"></script>

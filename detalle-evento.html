@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Evento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sections/eventos.css">
+</head>
+<body class="eventos-page-dark">
+    <header class="main-header">
+        <a href="eventos.html" style="color:white; text-decoration:none; font-weight:bold; font-size:1.2rem;">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </header>
+    <main class="content-wrapper-dark">
+        <div id="detalle-container" class="detail-layout">
+            <p style="text-align:center; width:100%;">Cargando...</p>
+        </div>
+    </main>
+    
+    <div id="modal-reserva" class="modal" style="display: none; position: fixed; z-index: 4000; top:0; left:0; width:100%; height:100%;">
+        <div class="admin-card-dark" style="width:400px; max-width:90%; position: relative;">
+            <span onclick="document.getElementById('modal-reserva').style.display='none'" style="float:right; cursor:pointer; font-size:1.5em;">&times;</span>
+            <h2 style="margin-top:0; color:var(--accent);">Inscripción</h2>
+            <p id="reserva-evento-titulo" style="font-weight:bold;"></p>
+            <div id="reserva-dynamic-fields"></div>
+            <button onclick="eventosApp.confirmarInscripcion()" class="btn-publish-dark" style="margin-top:20px; background:var(--accent);">Confirmar</button>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/eventos.js"></script>
+</body>
+</html>
